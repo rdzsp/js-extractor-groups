@@ -1,0 +1,19 @@
+js-extractor:
+  name: PostMessage
+  patterns:
+    - regex: ([sS]{0,10}\.postMessage\(([^)]+)\)[sS]{0,10})
+      description: postMessage calls (sender)
+    - regex: >-
+        (([sS]{0,10}(?:window|self|global)?(?:\[(?:"|')message(?:"|')\]|addEventListener\((?:"|')message(?:"|'))[^)]*\)[sS]{0,10}))
+      description: message event listeners
+    - regex: >-
+        ([sS]{0,10}(?:window|self|worker|frame|iframe|port)?\.onmessage\s*=[sS]{0,10})
+      description: onmessage handler assignment
+    - regex: >-
+        ([sS]{0,10}(?:event|e|evt|msg)\.origin\s*(?:===|!==|==|!=)\s*(?:"|')([^"']+)(?:"|')[sS]{0,10})
+      description: origin validation checks
+    - regex: ([sS]{0,10}\.postMessage\([^,]+,\s*(?:"|')\*(?:"|')[sS]{0,10})
+      description: postMessage with wildcard origin (security risk)
+    - regex: >-
+        ([sS]{0,10}(?:event|e|evt|msg)\.data(?:\.[a-zA-Z_$][a-zA-Z0-9_$]*)*[sS]{0,10})
+      description: accessing event.data from message handler

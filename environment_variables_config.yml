@@ -1,0 +1,26 @@
+js-extractor:
+  name: Environment Variables / Config
+  patterns:
+    - regex: ([sS]{0,10}process\.env\.([A-Z0-9_]+)[sS]{0,10})
+      description: Node.js process.env access
+    - regex: ([sS]{0,10}import\.meta\.env\.([A-Z_][A-Z0-9_]*)[sS]{0,10})
+      description: Vite / ESM import.meta.env
+    - regex: ([sS]{0,10}NEXT_PUBLIC_[A-Z0-9_]+[sS]{0,10})
+      description: Next.js public env variables
+    - regex: ([sS]{0,10}VITE_[A-Z0-9_]+[sS]{0,10})
+      description: Vite public env variables
+    - regex: ([sS]{0,10}REACT_APP_[A-Z0-9_]+[sS]{0,10})
+      description: Create React App env variables
+    - regex: >-
+        ([sS]{0,10}(?:useRuntimeConfig|\$config)\.(?:public\.)?([a-zA-Z0-9_]+)[sS]{0,10})
+      description: Nuxt runtime config access
+    - regex: >-
+        ([sS]{0,10}(?:api_?key|secret|token|password|passwd|pwd)\s*[:=]\s*(?:"|'|`)([^"'`]{8,})(?:"|'|`)[sS]{0,10})
+      description: Hardcoded secrets in config
+    - regex: ([sS]{0,10}require\s*\(\s*(?:"|')dotenv(?:"|')\s*\)[sS]{0,10})
+      description: dotenv require
+    - regex: >-
+        ([sS]{0,10}(?:const|let|var)\s+(?:config|cfg|settings|env)\s*=\s*\{[sS]{0,10}})
+      description: Config object declaration
+    - regex: ([sS]{0,10}(?:new\s+)?(?:webpack\.)?DefinePlugin\s*\([sS]{0,10}})
+      description: Webpack DefinePlugin (inlined env vars)
