@@ -11,7 +11,7 @@ This repository provides pre-configured extraction groups in YAML format that yo
 1. Ensure you have the [JS Extractor](https://github.com/rdzsp/js-extractor) extension installed in your browser.
 2. Open the extension's **Options/Settings** page.
 3. Locate the YAML Import/Export section for groups.
-4. Copy the raw contents of any `.yml` file from this repository and paste it into the import window, or use the file upload functionality.
+4. Copy the raw contents of any `.yml` file from this repository and paste it into the import window.
 5. Once imported, the new extraction group and its patterns will be active inside your extension!
 
 ## 🤝 Contributing
